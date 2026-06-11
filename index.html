@@ -134,36 +134,49 @@
     /* ─── HOME VIEW ─── */
     .home-content { padding: 24px 20px 20px; }
 
-    /* Galería grid preview */
+    /* Galería grid preview — editorial bento layout */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: 1fr 1fr;
       gap: 3px;
+      height: 340px;
       margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
     }
     .gallery-thumb {
-      aspect-ratio: 1;
       position: relative;
       overflow: hidden;
       cursor: pointer;
     }
+    .gallery-thumb.span-rows {
+      grid-row: span 2;
+    }
+    .gallery-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-thumb:hover img { transform: scale(1.05); }
+    /* Keep bg class for galeria tab gradient placeholders */
     .gallery-thumb-bg {
       width: 100%; height: 100%;
       transition: transform 0.3s ease;
     }
-    .gallery-thumb:hover .gallery-thumb-bg { transform: scale(1.06); }
     .gallery-thumb .tag {
       position: absolute;
-      bottom: 6px; left: 6px;
-      background: rgba(0,0,0,0.45);
+      bottom: 8px; left: 8px;
+      background: rgba(0,0,0,0.5);
       color: white;
-      font-size: 8px;
+      font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 3px;
-      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(6px);
     }
 
     /* Gallery photo backgrounds */
@@ -906,12 +919,18 @@
         <div class="section-label">Galería</div>
         <div class="section-title">Lo que dejó la Edición 2026</div>
         <div class="gallery-grid">
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g1" style="height:100%"></div><div class="photo-inner">🎵</div><span class="tag">Sala</span></div>
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g2" style="height:100%"></div><div class="photo-inner">💡</div><span class="tag">Instalación</span></div>
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g3" style="height:100%"></div><div class="photo-inner">🎨</div><span class="tag">Galería</span></div>
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g4" style="height:100%"></div><div class="photo-inner">🎭</div><span class="tag">Terraza</span></div>
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g5" style="height:100%"></div><div class="photo-inner">✨</div><span class="tag">Escalera</span></div>
-          <div class="gallery-thumb"><div class="gallery-thumb-bg g6" style="height:100%"></div><div class="photo-inner">🌿</div><span class="tag">Jardín</span></div>
+          <div class="gallery-thumb span-rows">
+            <img src="foto-cenital.png" alt="Vista aérea de la Villa Ortiz Basualdo durante Tertulia 2026">
+            <span class="tag">Vista aérea</span>
+          </div>
+          <div class="gallery-thumb">
+            <img src="foto-villa-fachada.png" alt="Fachada iluminada de la Villa">
+            <span class="tag">Villa</span>
+          </div>
+          <div class="gallery-thumb">
+            <img src="foto-fiesta-jardin.png" alt="Jardín y escenario durante la fiesta">
+            <span class="tag">Jardín</span>
+          </div>
         </div>
         <button class="btn-orange" onclick="switchTab('galeria')">Ver Más</button>
 
@@ -1043,9 +1062,9 @@
         <div class="filter-pill" onclick="setFilter(this)">Biblioteca</div>
       </div>
       <div class="full-gallery">
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g1" style="height:100%"></div><div class="overlay"><div class="overlay-label">Sala Principal</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g2" style="height:100%"></div><div class="overlay"><div class="overlay-label">Instalación</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g3" style="height:100%"></div><div class="overlay"><div class="overlay-label">Galería</div></div></div>
+        <div class="full-gallery-item"><img src="foto-cenital.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Vista cenital"><div class="overlay"><div class="overlay-label">Vista aérea</div></div></div>
+        <div class="full-gallery-item"><img src="foto-fiesta-jardin.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Jardín"><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
+        <div class="full-gallery-item"><img src="foto-villa-fachada.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Villa"><div class="overlay"><div class="overlay-label">Villa</div></div></div>
         <div class="full-gallery-item"><div class="gallery-thumb-bg g4" style="height:100%"></div><div class="overlay"><div class="overlay-label">Terraza</div></div></div>
         <div class="full-gallery-item"><div class="gallery-thumb-bg g5" style="height:100%"></div><div class="overlay"><div class="overlay-label">Escalera</div></div></div>
         <div class="full-gallery-item"><div class="gallery-thumb-bg g6" style="height:100%"></div><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
