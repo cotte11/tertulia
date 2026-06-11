@@ -844,6 +844,64 @@
     .tab-btn.active .tab-indicator { transform: scaleX(1); }
     .tab-btn { position: relative; }
 
+    /* ─── PEOPLE GALLERY ─── */
+    .people-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .prow { display: grid; gap: 3px; }
+    .prow-1 { grid-template-columns: 1fr; }
+    .prow-2 { grid-template-columns: 1fr 1fr; }
+    .pphoto {
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #111;
+    }
+    .pphoto img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .pphoto:hover img { transform: scale(1.04); }
+    .pphoto.wide     { aspect-ratio: 4/3; }
+    .pphoto.portrait { aspect-ratio: 3/4; }
+    .pphoto .plabel {
+      position: absolute;
+      bottom: 10px; left: 10px;
+      background: rgba(0,0,0,0.48);
+      backdrop-filter: blur(6px);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pphoto:hover .plabel { opacity: 1; }
+    .gallery-upload-cta {
+      padding: 28px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .gallery-upload-cta p {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .gallery-upload-cta span {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 16px;
+    }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -1046,8 +1104,8 @@
     <div class="view" id="view-galeria">
       <div class="galeria-header">
         <div>
-          <div class="section-label" style="margin-bottom:2px">Archivo colectivo</div>
-          <div style="font-size:16px;font-weight:800;color:var(--dark)">Lo que dejó la Edición 2026</div>
+          <div class="section-label" style="margin-bottom:2px">Archivo colectivo · 2026</div>
+          <div style="font-size:16px;font-weight:800;color:var(--dark)">La gente de la Edición 2026</div>
         </div>
         <button class="btn-orange" style="width:auto;padding:8px 16px;font-size:11px;margin:0;border-radius:100px" onclick="openUploadModal()">
           + Subir
@@ -1055,32 +1113,78 @@
       </div>
       <div class="galeria-filters">
         <div class="filter-pill active" onclick="setFilter(this)">Todas</div>
-        <div class="filter-pill" onclick="setFilter(this)">Sala Principal</div>
-        <div class="filter-pill" onclick="setFilter(this)">Jardín</div>
-        <div class="filter-pill" onclick="setFilter(this)">Instalaciones</div>
-        <div class="filter-pill" onclick="setFilter(this)">Terraza</div>
-        <div class="filter-pill" onclick="setFilter(this)">Biblioteca</div>
+        <div class="filter-pill" onclick="setFilter(this)">La gente</div>
+        <div class="filter-pill" onclick="setFilter(this)">Música</div>
+        <div class="filter-pill" onclick="setFilter(this)">La villa</div>
+        <div class="filter-pill" onclick="setFilter(this)">La noche</div>
       </div>
-      <div class="full-gallery">
-        <div class="full-gallery-item"><img src="foto-cenital.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Vista cenital"><div class="overlay"><div class="overlay-label">Vista aérea</div></div></div>
-        <div class="full-gallery-item"><img src="foto-fiesta-jardin.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Jardín"><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
-        <div class="full-gallery-item"><img src="foto-villa-fachada.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s" alt="Villa"><div class="overlay"><div class="overlay-label">Villa</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g4" style="height:100%"></div><div class="overlay"><div class="overlay-label">Terraza</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g5" style="height:100%"></div><div class="overlay"><div class="overlay-label">Escalera</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g6" style="height:100%"></div><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g7" style="height:100%"></div><div class="overlay"><div class="overlay-label">Comedor</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g8" style="height:100%"></div><div class="overlay"><div class="overlay-label">Biblioteca</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g9" style="height:100%"></div><div class="overlay"><div class="overlay-label">Hall</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g10" style="height:100%"></div><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g11" style="height:100%"></div><div class="overlay"><div class="overlay-label">Sala Principal</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g12" style="height:100%"></div><div class="overlay"><div class="overlay-label">Terraza</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g3" style="height:100%"></div><div class="overlay"><div class="overlay-label">Instalación</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g1" style="height:100%;opacity:0.8"></div><div class="overlay"><div class="overlay-label">Comedor</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g7" style="height:100%;opacity:0.8"></div><div class="overlay"><div class="overlay-label">Escalera</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g5" style="height:100%;opacity:0.8"></div><div class="overlay"><div class="overlay-label">Galería</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g2" style="height:100%;opacity:0.8"></div><div class="overlay"><div class="overlay-label">Hall</div></div></div>
-        <div class="full-gallery-item"><div class="gallery-thumb-bg g9" style="height:100%;opacity:0.8"></div><div class="overlay"><div class="overlay-label">Jardín</div></div></div>
+
+      <!-- Editorial people gallery -->
+      <div class="people-gallery">
+
+        <!-- Full: pista de baile, silhouettes -->
+        <div class="prow prow-1">
+          <div class="pphoto wide">
+            <img src="gallery/e161bd55fafa111fa99c239362d24a80.jpg" alt="Pista de baile">
+            <span class="plabel">La noche</span>
+          </div>
+        </div>
+
+        <!-- 2: energy girls + fan girls -->
+        <div class="prow prow-2">
+          <div class="pphoto portrait">
+            <img src="gallery/e0050c76d6e432024c2500a1969574fc.jpg" alt="La gente">
+            <span class="plabel">La gente</span>
+          </div>
+          <div class="pphoto portrait">
+            <img src="gallery/98c2a838f383218fc5c18f7a0fbf061e.jpg" alt="La gente">
+            <span class="plabel">La gente</span>
+          </div>
+        </div>
+
+        <!-- Full: jardín con guirnaldas -->
+        <div class="prow prow-1">
+          <div class="pphoto wide">
+            <img src="gallery/06d2b948649947ab7e8b42911660ff0c.jpg" alt="Jardín">
+            <span class="plabel">Jardín</span>
+          </div>
+        </div>
+
+        <!-- 2: banda en vivo + dj film -->
+        <div class="prow prow-2">
+          <div class="pphoto portrait">
+            <img src="gallery/6ab153f660734efaee81e74ccfe15f37.jpg" alt="Música en vivo">
+            <span class="plabel">Música</span>
+          </div>
+          <div class="pphoto portrait">
+            <img src="gallery/18de7d78569c17686c3680cf21ef90e8.jpg" alt="DJ set">
+            <span class="plabel">DJ set</span>
+          </div>
+        </div>
+
+        <!-- 2: golden hour girls + film party -->
+        <div class="prow prow-2">
+          <div class="pphoto portrait">
+            <img src="gallery/61d45e54670164763ea5fc3a6011961e.jpg" alt="La gente">
+            <span class="plabel">La gente</span>
+          </div>
+          <div class="pphoto portrait">
+            <img src="gallery/f6571f0a6071cb7fe31ac4b27c93a00a.jpg" alt="La noche">
+            <span class="plabel">La noche</span>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Upload CTA -->
+      <div class="gallery-upload-cta">
+        <p>¿Estuviste en la fiesta?</p>
+        <span>Sumá tu foto al archivo de la Edición 2026</span>
+        <button class="btn-orange" style="width:auto;display:inline-block;padding:12px 28px" onclick="openUploadModal()">
+          + Subir al archivo
+        </button>
+      </div>
+
       <div style="height:20px"></div>
     </div>
 
