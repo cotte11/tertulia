@@ -845,85 +845,102 @@
     .tab-btn { position: relative; }
 
     /* ─── LINEUP ─── */
-    .lineup-toggle {
-      width: 100%;
-      background: none;
-      border: none;
+    .lineup-header {
       border-top: 1px solid var(--border);
-      padding: 12px 18px;
+      padding: 14px 18px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
-      transition: background 0.15s;
     }
-    .lineup-toggle:hover { background: var(--bg); }
-    .lineup-toggle-label {
+    .lineup-header-label {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--orange);
     }
-    .lineup-toggle-chevron {
+    .lineup-header-count {
+      font-size: 10px;
+      font-weight: 600;
       color: var(--muted);
-      transition: transform 0.3s ease;
+      letter-spacing: 0.05em;
     }
-    .lineup-toggle.open .lineup-toggle-chevron { transform: rotate(180deg); }
-    .lineup-section {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    .lineup-section.open { max-height: 200px; }
+    .lineup-section { overflow: hidden; }
     .lineup-strip {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       overflow-x: auto;
-      padding: 14px 18px 16px;
+      padding: 14px 18px 20px;
       scrollbar-width: none;
     }
     .lineup-strip::-webkit-scrollbar { display: none; }
     .artist-card {
       flex-shrink: 0;
-      width: 88px;
-      cursor: pointer;
+      width: 130px;
     }
     .artist-photo {
-      width: 88px;
-      height: 88px;
-      border-radius: 10px;
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 7px;
+      margin-bottom: 9px;
       position: relative;
     }
     .artist-photo img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
     }
+    .artist-card:hover .artist-photo img { transform: scale(1.05); }
     .artist-photo .art-ph {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
+      font-size: 32px;
     }
     .artist-name {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       color: var(--dark);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
     }
     .artist-genre {
       font-size: 9px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 2px;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
     }
+    .artist-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .artist-social {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .artist-social:hover { opacity: 0.7; }
+    .artist-social svg { flex-shrink: 0; }
+    .artist-social span {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+    }
+    .social-spotify span { color: #1DB954; }
+    .social-instagram span { color: #C13584; }
     /* Artist photo gradients */
     .art-rock  { background: linear-gradient(135deg, #1a0505 0%, #8B1A1A 60%, #C43020 100%); }
     .art-tango { background: linear-gradient(135deg, #0d0010 0%, #5C0A4A 60%, #9A1060 100%); }
@@ -1130,16 +1147,12 @@
               <img src="thumbnail-2026.jpg" alt="TERTULIA 2026" style="width:100%;border-radius:8px;display:block;">
             </div>
 
-            <!-- LINEUP TOGGLE -->
-            <button class="lineup-toggle" id="lineupToggle" onclick="toggleLineup()">
-              <span class="lineup-toggle-label">Lineup 2026</span>
-              <svg class="lineup-toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-
-            <!-- LINEUP SECTION -->
-            <div class="lineup-section" id="lineupSection">
+            <!-- LINEUP -->
+            <div class="lineup-header">
+              <span class="lineup-header-label">Lineup 2026</span>
+              <span class="lineup-header-count">2 artistas confirmados</span>
+            </div>
+            <div class="lineup-section">
               <div class="lineup-strip">
 
                 <div class="artist-card">
@@ -1148,6 +1161,16 @@
                   </div>
                   <div class="artist-name">Aurelio y los Casi Estatua</div>
                   <div class="artist-genre">Rock</div>
+                  <div class="artist-socials">
+                    <a href="#" class="artist-social social-spotify">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                      <span>Escuchar en Spotify</span>
+                    </a>
+                    <a href="#" class="artist-social social-instagram">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      <span>@aurelioyloscast</span>
+                    </a>
+                  </div>
                 </div>
 
                 <div class="artist-card">
@@ -1156,38 +1179,48 @@
                   </div>
                   <div class="artist-name">Esposito Brothers</div>
                   <div class="artist-genre">DJ</div>
+                  <div class="artist-socials">
+                    <a href="#" class="artist-social social-spotify">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                      <span>Escuchar en Spotify</span>
+                    </a>
+                    <a href="#" class="artist-social social-instagram">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      <span>@espositobrothers</span>
+                    </a>
+                  </div>
                 </div>
 
                 <div class="artist-card">
-                  <div class="artist-photo">
-                    <div class="art-ph art-tango">🎻</div>
-                  </div>
+                  <div class="artist-photo"><div class="art-ph art-tango">🎻</div></div>
                   <div class="artist-name">Cuarteto Sur</div>
                   <div class="artist-genre">Tango</div>
+                  <div class="artist-socials">
+                    <a href="#" class="artist-social social-spotify">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                      <span>Escuchar en Spotify</span>
+                    </a>
+                    <a href="#" class="artist-social social-instagram">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      <span>@cuartetosur</span>
+                    </a>
+                  </div>
                 </div>
 
                 <div class="artist-card">
-                  <div class="artist-photo">
-                    <div class="art-ph art-jazz">🎷</div>
-                  </div>
+                  <div class="artist-photo"><div class="art-ph art-jazz">🎷</div></div>
                   <div class="artist-name">Combo Mar</div>
                   <div class="artist-genre">Jazz</div>
-                </div>
-
-                <div class="artist-card">
-                  <div class="artist-photo">
-                    <div class="art-ph art-folk">🪗</div>
+                  <div class="artist-socials">
+                    <a href="#" class="artist-social social-spotify">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                      <span>Escuchar en Spotify</span>
+                    </a>
+                    <a href="#" class="artist-social social-instagram">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      <span>@combomar_mdq</span>
+                    </a>
                   </div>
-                  <div class="artist-name">Alma Folk</div>
-                  <div class="artist-genre">Folklore</div>
-                </div>
-
-                <div class="artist-card">
-                  <div class="artist-photo">
-                    <div class="art-ph art-elec">🌀</div>
-                  </div>
-                  <div class="artist-name">Noche Negra</div>
-                  <div class="artist-genre">Electronic</div>
                 </div>
 
               </div>
@@ -1499,13 +1532,6 @@
     el.classList.add('active');
   }
 
-  function toggleLineup() {
-    const section = document.getElementById('lineupSection');
-    const toggle  = document.getElementById('lineupToggle');
-    const isOpen  = section.classList.contains('open');
-    section.classList.toggle('open', !isOpen);
-    toggle.classList.toggle('open', !isOpen);
-  }
 </script>
 </body>
 </html>
